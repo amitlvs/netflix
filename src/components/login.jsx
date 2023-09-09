@@ -57,7 +57,7 @@ export function Login() {
 
           <p className="text-sm my-1">
             This page is protected by Google reCAPTCHA to ensure you're not a
-            bot. Learn more.
+            bot. Learn more. Amit
           </p>
         </div>
       </div>
