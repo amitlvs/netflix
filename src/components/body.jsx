@@ -7,7 +7,6 @@ export function Body() {
   const appRouter = createBrowserRouter([
     { path: "/", element: <Login /> },
     { path: "/browse", element: <Browse /> },
-    { path: "/signup", element: <Browse /> },
   ]);
   return (
     <>

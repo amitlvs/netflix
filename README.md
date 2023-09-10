@@ -1,3 +1,12 @@
+# NETFLIXGPT
+  - Create React App
+  - Configired Tailwind
+  - Header
+  - Routing of APP
+  - Login Form
+  - Sign Up Form
+  - Form Validations
+  - useRef Hook 
 # Features
 
    - Login/Sign Up
