@@ -1,13 +1,19 @@
 import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "./header";
 import { validateFormData } from "../utils/validator";
 import { auth } from "../utils/firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { addUSer } from "../utils/userSlice";
 
 export function Login() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [isSignInOrUp, setSignInOrUp] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const email = useRef(null);
@@ -29,7 +35,6 @@ export function Login() {
     if (message) return;
     if (!isSignInOrUp) {
       //Sign Up logic
-      console.log("aaya kya");
       createUserWithEmailAndPassword(
         auth,
         email.current.value,
@@ -37,7 +42,25 @@ export function Login() {
       )
         .then((userCredentials) => {
           const user = userCredentials.user;
-          console.log(user);
+          updateProfile(user, {
+            displayName: fname?.current.value,
+            photoURL: "https://avatars.githubusercontent.com/u/85306285?v=4",
+          })
+            .then(() => {
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+              dispatch(
+                addUSer({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                })
+              );
+              navigate("/browse");
+            })
+            .catch((error) => {
+              setErrorMessage(error.message);
+            });
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -46,11 +69,16 @@ export function Login() {
         });
     } else {
       // Sign In Logic
-      signInWithEmailAndPassword(auth, email, password)
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user);
+          console.log(user, "user in for");
+          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -64,6 +92,7 @@ export function Login() {
       <Header />
       <div>
         <img
+          className=" h-screen"
           src="https://assets.nflxext.com/ffe/siteui/vlv3/42df4e1f-bef6-499e-87ff-c990584de314/5e7c383c-1f88-4983-b4da-06e14c0984ba/IN-en-20230904-popsignuptwoweeks-perspective_alpha_website_large.jpg"
           alt="background-image"
         ></img>
@@ -113,7 +142,7 @@ export function Login() {
             {isSignInOrUp ? "New to Netflix? " : "Already a user!! "}
           </span>
           <span className="cursor-pointer" onClick={toggleSignInOrUp}>
-            {isSignInOrUp ? "Sign In now" : "Sign Up now"}
+            {isSignInOrUp ? "Sign Up now" : "Sign In now"}
           </span>
 
           <p className="text-sm my-1">
