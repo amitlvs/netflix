@@ -6,7 +6,6 @@ export const validateFormData = (email, password, name) => {
     password
   );
   const isNameValid = name?.length >= 4 ? true : false;
-  console.log(isNameValid, "huhi");
   if (!isEmailValid) return "Email is Invalid!";
   if (!isPasswordValid) return "Password is Invalid";
   if (!isNameValid && name)

@@ -19,8 +19,6 @@ export function Login() {
   const password = useRef(null);
   const fname = useRef(null);
   const toggleSignInOrUp = () => {
-    console.log(isSignInOrUp, "kya hai status");
-
     setSignInOrUp(!isSignInOrUp);
   };
   const onFormSubmit = () => {
@@ -30,7 +28,6 @@ export function Login() {
       fname?.current?.value
     );
     setErrorMessage(message);
-    console.log(message, isSignInOrUp);
     if (message) return;
     if (!isSignInOrUp) {
       //Sign Up logic
@@ -75,7 +72,6 @@ export function Login() {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user, "user in for");
         })
         .catch((error) => {
           const errorCode = error.code;

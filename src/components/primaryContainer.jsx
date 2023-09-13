@@ -8,11 +8,12 @@ const PrimaryContainer = () => {
 
   const displayMovie = movie[0];
   const { original_title, overview, id } = displayMovie;
-  console.log(displayMovie);
   return (
     <>
-      <MovieTitle title={original_title} overview={overview} />
-      <MovieBackground movieId={id} />
+      <div>
+        <MovieTitle title={original_title} overview={overview} />
+        <MovieBackground movieId={id} />
+      </div>
     </>
   );
 };
