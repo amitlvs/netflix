@@ -1,5 +1,4 @@
 import { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Header from "./header";
 import { validateFormData } from "../utils/validator";
 import { auth } from "../utils/firebase";
@@ -10,9 +9,9 @@ import {
 } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { addUSer } from "../utils/userSlice";
+import { USER_AVATAR } from "../utils/constant";
 
 export function Login() {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isSignInOrUp, setSignInOrUp] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -44,7 +43,7 @@ export function Login() {
           const user = userCredentials.user;
           updateProfile(user, {
             displayName: fname?.current.value,
-            photoURL: "https://avatars.githubusercontent.com/u/85306285?v=4",
+            photoURL: USER_AVATAR,
           })
             .then(() => {
               const { uid, email, displayName, photoURL } = auth.currentUser;
@@ -56,7 +55,6 @@ export function Login() {
                   photoURL: photoURL,
                 })
               );
-              navigate("/browse");
             })
             .catch((error) => {
               setErrorMessage(error.message);
@@ -78,7 +76,6 @@ export function Login() {
           // Signed in
           const user = userCredential.user;
           console.log(user, "user in for");
-          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;

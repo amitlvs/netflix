@@ -13,6 +13,23 @@
   - Created Redux store with userSlice
   - LogIn with user info
   - Logout
+  - Update Profile
+  - Redirect based on Authentication
+  - Unsubcribed to the onAuthStateCallback
+  - Adding constant files for hardcoded data
+  - Register TMDB api, create an app and get access token
+  - Get Data from TMDB now playing movies
+  - Custom hook for now playing movies
+  - Update store with movies Data
+  - Create Movies Slice
+  - Planning for Primary Container and Secondary Container
+  - Fetcing Trailer Data using custom hook
+  - Update store with trailer video data
+  - Embded Youtube video with the movie id from Trailer & nowPlayingMovies Data
+  - Made youtube video autoplay and mute
+  - Imorved CSS for Primary container screen
+  - 
+
 # Features
 
    - Login/Sign Up
