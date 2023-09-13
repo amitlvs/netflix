@@ -1,7 +1,7 @@
 import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
-import Header from "./header";
-import PrimaryContainer from "./primaryContainer";
-import SecondaryContainer from "./secondaryContainer";
+import Header from "./Header";
+import PrimaryContainer from "./PrimaryContainer";
+import SecondaryContainer from "./SecondaryContainer";
 export function Browse() {
   useNowPlayingMovies();
 

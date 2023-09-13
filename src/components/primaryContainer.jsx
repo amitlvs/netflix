@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
-import MovieBackground from "./movieBackground";
-import MovieTitle from "./movieTitle";
+import MovieBackground from "./MovieBackground";
+import MovieTitle from "./MovieTitle";
 
 const PrimaryContainer = () => {
   const movie = useSelector((store) => store.movies?.nowPlayingMoviesList);
