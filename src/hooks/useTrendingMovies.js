@@ -16,7 +16,7 @@ const useTrendingMovies = () => {
     dispatch(addTrendingMovies(json.results));
   };
   useEffect(() => {
-    trendingMovies && getTrendingMovies();
+    !trendingMovies && getTrendingMovies();
   }, []);
 };
 export default useTrendingMovies;

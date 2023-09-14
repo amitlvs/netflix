@@ -19,7 +19,7 @@ const useMoviesTrailer = (movieId) => {
     dispatch(addTrailer(trailer));
   };
   useEffect(() => {
-    moviesTrailer && getMoviesVideo();
+    !moviesTrailer && getMoviesVideo();
   }, []);
 };
 
