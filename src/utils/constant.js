@@ -27,3 +27,5 @@ export const SUPPORTED_LANGUAGE = [
   { identifier: "Spanish", name: "Spanish" },
   { identifier: "German", name: "German" },
 ];
+
+export const OPENAI_KEY = "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";

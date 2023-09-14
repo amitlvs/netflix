@@ -36,7 +36,8 @@
   - GPT Search PAge
   - Toggle HomePage & GPT Search Button
   - Multi-Lingual Logic Implimentation
-  - 
+  - Create open API_KEY
+  - Integrate Open API's
 
 # Features
 
