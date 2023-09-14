@@ -23,7 +23,7 @@ export function Browse() {
       ) : (
         <>
           <PrimaryContainer />
-          <SecondaryContainer />
+          <SecondaryContainer className="pt-11" />
         </>
       )}
 

@@ -57,7 +57,7 @@ export function Header() {
       <div className="absolute z-30 px-8 py-2 bg-gradient-to-b from-black w-screen flex flex-col md:flex-row justify-between items-center">
         <img className="w-44" src={LOGO} alt="logo"></img>
         {user && (
-          <div className="flex justify-between flex-col md:flex-row  ">
+          <div className="flex justify-between flex flex-row  ">
             {/* Select Component to select language */}
             {toggleSearch && (
               <select
