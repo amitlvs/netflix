@@ -90,7 +90,7 @@ export function Login() {
           alt="background-image"
         ></img>
       </div>
-      <div className="absolute p-12 rounded-lg  w-4/12 top-36 mx-auto bg-black my-31 right-0 left-0 opacity-80">
+      <div className="absolute p-2 md:p-12 rounded-lg  md:w-4/12 top-36 mx-auto bg-black my-31 right-0 left-0 opacity-80">
         <form className="text-white " onSubmit={(e) => e.preventDefault()}>
           <h1 className="text-3xl py-3">
             {isSignInOrUp ? "Sign In" : "Sign Up"}
