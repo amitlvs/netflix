@@ -1,21 +1,24 @@
 import { useRef, useState } from "react";
-import Header from "./header";
+import Header from "./Header";
 import { validateFormData } from "../utils/validator";
 import { auth } from "../utils/firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { addUSer } from "../utils/userSlice";
+import { NETFLIX_BACKGROUND, USER_AVATAR } from "../utils/constant";
 
 export function Login() {
+  const dispatch = useDispatch();
   const [isSignInOrUp, setSignInOrUp] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const email = useRef(null);
   const password = useRef(null);
   const fname = useRef(null);
   const toggleSignInOrUp = () => {
-    console.log(isSignInOrUp, "kya hai status");
-
     setSignInOrUp(!isSignInOrUp);
   };
   const onFormSubmit = () => {
@@ -25,11 +28,9 @@ export function Login() {
       fname?.current?.value
     );
     setErrorMessage(message);
-    console.log(message, isSignInOrUp);
     if (message) return;
     if (!isSignInOrUp) {
       //Sign Up logic
-      console.log("aaya kya");
       createUserWithEmailAndPassword(
         auth,
         email.current.value,
@@ -37,7 +38,24 @@ export function Login() {
       )
         .then((userCredentials) => {
           const user = userCredentials.user;
-          console.log(user);
+          updateProfile(user, {
+            displayName: fname?.current.value,
+            photoURL: USER_AVATAR,
+          })
+            .then(() => {
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+              dispatch(
+                addUSer({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                })
+              );
+            })
+            .catch((error) => {
+              setErrorMessage(error.message);
+            });
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -46,11 +64,14 @@ export function Login() {
         });
     } else {
       // Sign In Logic
-      signInWithEmailAndPassword(auth, email, password)
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user);
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -64,11 +85,12 @@ export function Login() {
       <Header />
       <div>
         <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/42df4e1f-bef6-499e-87ff-c990584de314/5e7c383c-1f88-4983-b4da-06e14c0984ba/IN-en-20230904-popsignuptwoweeks-perspective_alpha_website_large.jpg"
+          className=" h-screen"
+          src={NETFLIX_BACKGROUND}
           alt="background-image"
         ></img>
       </div>
-      <div className="absolute p-12 rounded-lg  w-4/12 top-36 mx-auto bg-black my-31 right-0 left-0 opacity-80">
+      <div className="absolute p-2 md:p-12 rounded-lg  md:w-4/12 top-36 mx-auto bg-black my-31 right-0 left-0 opacity-80">
         <form className="text-white " onSubmit={(e) => e.preventDefault()}>
           <h1 className="text-3xl py-3">
             {isSignInOrUp ? "Sign In" : "Sign Up"}
@@ -113,7 +135,7 @@ export function Login() {
             {isSignInOrUp ? "New to Netflix? " : "Already a user!! "}
           </span>
           <span className="cursor-pointer" onClick={toggleSignInOrUp}>
-            {isSignInOrUp ? "Sign In now" : "Sign Up now"}
+            {isSignInOrUp ? "Sign Up now" : "Sign In now"}
           </span>
 
           <p className="text-sm my-1">
