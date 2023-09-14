@@ -5,7 +5,7 @@ import { GPTSearchBar } from "./GPTSearchBar";
 export const GPTSearchPage = () => {
   return (
     <div>
-      <div className="absolute">
+      <div className="fixed">
         <img
           className=" h-screen"
           src={NETFLIX_BACKGROUND}
