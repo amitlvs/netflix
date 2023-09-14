@@ -49,7 +49,6 @@ export function Header() {
   };
 
   const getSelectedLanguage = (e) => {
-    console.log(e);
     dispatch(changeLang(e?.target?.value));
   };
 

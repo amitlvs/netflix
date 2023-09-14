@@ -19,8 +19,6 @@ export const GPTSearchBar = () => {
       "Act as a Movie Recommendation System and suggest some movies for the query. " +
       chatBox.current.value +
       " only give me names of 5 movies, comma seperated like the example given ahead. Example Result: Gadar, Sholay, Don, Koi Mil Gaya, Khatta Meetha";
-    console.log(chatBoxQuery);
-
     const dummyMovieList = [
       "Andaz Apna Apna",
       "Hera Pheri",
@@ -45,7 +43,6 @@ export const GPTSearchBar = () => {
 
     const moviesFromTMDB = await Promise.all(getMoviesFromTMDB);
 
-    console.log(moviesFromTMDB);
     dispatch(
       addMoviesDetails({
         movieName: dummyMovieList,
