@@ -1,7 +1,6 @@
 import MovieCards from "./MovieCards";
 
 const MovieList = ({ title, movies }) => {
-  console.log(title, movies);
   return (
     <>
       <div className="p-4 px-8">
@@ -10,7 +9,7 @@ const MovieList = ({ title, movies }) => {
           {movies && (
             <div className="flex flex-row">
               {movies?.map((movie) => (
-                <MovieCards posterPath={movie?.poster_path} />
+                <MovieCards key={movie.id} posterPath={movie?.poster_path} />
               ))}
             </div>
           )}

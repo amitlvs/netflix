@@ -13,7 +13,6 @@ const useTrendingMovies = () => {
     );
     const json = await data.json();
     dispatch(addTrendingMovies(json.results));
-    console.log(json.results);
   };
   useEffect(() => {
     getTrendingMovies();

@@ -13,7 +13,6 @@ const useHorrorMovies = () => {
     );
     const json = await data.json();
     dispatch(addHorrorMovies(json.results));
-    console.log(json.results);
   };
   useEffect(() => {
     getHorrorMovies();
