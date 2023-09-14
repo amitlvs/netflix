@@ -7,13 +7,15 @@ export const GPTSearchPage = () => {
     <div>
       <div className="fixed">
         <img
-          className=" h-screen"
+          className="h-screen object-cover"
           src={NETFLIX_BACKGROUND}
           alt="background-image"
         ></img>
       </div>
-      <GPTSearchBar />
-      <GPTMovieSuggestion />
+      <div className="pt-[80%] md:pt-[0%]">
+        <GPTSearchBar />
+        <GPTMovieSuggestion />
+      </div>
     </div>
   );
 };

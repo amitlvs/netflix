@@ -41,6 +41,7 @@
   - View Suggested Views as MovieList Component
   - {Create a input field if user wants to enter the 
     OPEN AI KEY and use that key to hit API's to avoid billing usage}
+  - Remove search API suggested values
 
 # Features
 
