@@ -1,4 +1,11 @@
+import { useSelector } from "react-redux";
+import { lang } from "../utils/languageConstants";
+
 export const GPTSearchBar = () => {
+  const langConfigStore = useSelector(
+    (store) => store?.appConfig?.lang
+  ).toLowerCase();
+
   return (
     <div>
       <form className="p-[10%]">
@@ -30,14 +37,14 @@ export const GPTSearchBar = () => {
             type="search"
             id="default-search"
             className="block w-full p-4 pl-10 text-sm text-gray-900 border border-black rounded-lg bg-gray-50 focus:ring-black focus:border-black dark:bg-black dark:border-black dark:placeholder-gray-400 dark:text-white dark:focus:ring-black dark:focus:border-black"
-            placeholder="What would you like to watch today??"
+            placeholder={lang[langConfigStore]?.gptSearchPlaceHolder}
             required
           ></input>
           <button
             type="submit"
             className="text-white absolute right-2.5 bottom-2.5 bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
           >
-            Search
+            {lang[langConfigStore]?.search}
           </button>
         </div>
       </form>

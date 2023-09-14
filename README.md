@@ -33,6 +33,9 @@
   - Populated the new posters using the custom hooks
   - Toggle Button for Search BAR component
   - GPT SEARCH BAR Component
+  - GPT Search PAge
+  - Toggle HomePage & GPT Search Button
+  - Multi-Lingual Logic Implimentation
   - 
 
 # Features
