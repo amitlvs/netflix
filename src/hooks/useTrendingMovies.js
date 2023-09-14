@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { API_OPTIONS } from "../utils/constant";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addTrendingMovies } from "../utils/movieSlice";
 
 const useTrendingMovies = () => {
   const dispatch = useDispatch();
+  const trendingMovies = useSelector((store) => store?.movies?.trendingMovies);
 
   const getTrendingMovies = async () => {
     const data = await fetch(
@@ -15,7 +16,7 @@ const useTrendingMovies = () => {
     dispatch(addTrendingMovies(json.results));
   };
   useEffect(() => {
-    getTrendingMovies();
+    trendingMovies && getTrendingMovies();
   }, []);
 };
 export default useTrendingMovies;

@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { API_OPTIONS } from "../utils/constant";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addHorrorMovies } from "../utils/movieSlice";
 
 const useHorrorMovies = () => {
   const dispatch = useDispatch();
-
+  const horrorStore = useSelector((store) => store?.movies?.horrorMovies);
   const getHorrorMovies = async () => {
     const data = await fetch(
       "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=2",
@@ -15,7 +15,7 @@ const useHorrorMovies = () => {
     dispatch(addHorrorMovies(json.results));
   };
   useEffect(() => {
-    getHorrorMovies();
+    !horrorStore && getHorrorMovies();
   }, []);
 };
 export default useHorrorMovies;
