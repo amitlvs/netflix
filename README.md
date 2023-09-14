@@ -28,6 +28,11 @@
   - Embded Youtube video with the movie id from Trailer & nowPlayingMovies Data
   - Made youtube video autoplay and mute
   - Imorved CSS for Primary container screen
+  - Build MovieLists & Cards
+  - Created Custom Hooks for trending,horror,popular & upcoming Movies
+  - Populated the new posters using the custom hooks
+  - Toggle Button for Search BAR component
+  - GPT SEARCH BAR Component
   - 
 
 # Features
